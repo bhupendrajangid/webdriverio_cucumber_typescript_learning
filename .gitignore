@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+# others
+node_modules/
+allure-results/
+allure-report/
+reports/
+notes.txt
