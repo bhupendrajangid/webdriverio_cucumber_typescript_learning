@@ -1,0 +1,40 @@
+# Specify Test Files
+specs: ./test/features/readYaml.feature
+
+# Patterns to exclude.
+exclude:
+  - path/to/excluded/files
+
+# Capabilities
+maxInstances: 10
+capabilities:
+  - maxInstances: 5
+    browserName: chrome
+    acceptInsecureCerts: true
+
+# log Configurations, options -> trace | debug | info | warn | error | silent
+logLevel: error
+
+# timeouts
+waitforTimeout: 10000
+connectionRetryTimeout: 120000
+
+# retry count
+connectionRetryCount: 3
+specFileRetries: 1
+
+# Delay in seconds between the spec file retry attempts
+specFileRetriesDelay: 0
+specFileRetriesDeferred: false
+
+# Cucumber options
+stepsFilePath: ./test/steps/*.ts
+dryRun: false
+failFast: false
+format: pretty
+snippets: true
+source: true
+strict: false
+tagExpression: ""
+timeout: 60000
+ignoreUndefinedDefinitions: false

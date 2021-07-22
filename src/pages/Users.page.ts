@@ -11,6 +11,7 @@ class UsersPage extends Page {
 
     async openApp(pageurl: string) {
         await browser.url(pageurl)
+        await browser.maximizeWindow()
     }
     
     async enterAPIUrl(apiendpoint: string) {
