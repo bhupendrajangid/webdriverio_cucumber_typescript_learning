@@ -1,3 +1,6 @@
+# Select environment options -> e1 | e2
+environment: E2
+
 # Specify Test Files
 specs:
   - ./test/features/readYaml.feature
