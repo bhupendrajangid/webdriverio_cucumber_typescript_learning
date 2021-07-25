@@ -1,0 +1,6 @@
+e1:
+  url: https://www.google.com/
+  environment: Testing in E1 environment
+e2:
+  url: https://www.google.com/
+  environment: Testing in E2 environment
