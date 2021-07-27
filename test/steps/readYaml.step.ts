@@ -4,16 +4,12 @@ import { env } from "./../../src/config/common_functions/configuration";
 
 const conf = read("../../conf.yaml", __dirname);
 
-const environment: string = "e2";
-
 Given(/^I have yaml file so reading it$/, async () => {
   console.log("reading YAML File");
   console.log(__dirname);
   const configurationData = read("../../conf.yaml", __dirname);
 
-  console.log(
-    `Conf Data ->\n${JSON.stringify(configurationData, undefined, 2)}`
-  );
+  console.log(`Conf Data ->\n${JSON.stringify(configurationData, undefined, 2)}`);
 });
 
 Then(/^Read environment file$/, async () => {

@@ -1,0 +1,4 @@
+automation:
+  - typeScript
+  - Cucumber
+  - WebdriverIO

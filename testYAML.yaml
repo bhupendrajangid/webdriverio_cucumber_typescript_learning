@@ -1,0 +1,15 @@
+automation1:
+  - typeScript
+  - Cucumber
+  - WebdriverIO
+automation2:
+  - typeScript
+    Cucumber
+    WebdriverIO
+automation3:
+  - typeScript1:
+      - Cucumber
+        WebdriverIO
+  - typeScript2:
+      - Cucumber
+      - WebdriverIO

@@ -1,13 +1,15 @@
 # Select environment options -> e1 | e2
-environment: E2
+environment: e1
 
 # Specify Test Files
-specs:
-  - ./test/features/readYaml.feature
+specs: ./test/features/login.feature
+
+suites:
+  - ./test/features/*.feature
 
 # Patterns to exclude.
 exclude:
-  - path/to/excluded/files
+  - ./test/features/home.feature
 
 # Capabilities
 maxInstances: 10

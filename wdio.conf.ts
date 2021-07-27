@@ -1,4 +1,12 @@
 import { conf } from "./conf";
+import { emptyDir } from "fs-extra"
+
+let scriptsToRun: (string | string[])[] = conf.data.suites
+if (conf.data.specs) {
+  scriptsToRun = conf.data.specs
+  if (typeof scriptsToRun === 'string') scriptsToRun = [scriptsToRun]
+}
+
 export const config: WebdriverIO.Config = {
   //
   // ====================
@@ -24,7 +32,7 @@ export const config: WebdriverIO.Config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: conf.data.specs,
+  specs: scriptsToRun,
   // Patterns to exclude.
   exclude: conf.data.exclude,
   //
@@ -133,7 +141,11 @@ export const config: WebdriverIO.Config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec", ["allure", { outputDir: "allure-results" }]],
+  reporters: ["spec", ['allure', {
+    outputDir: 'allure-results',
+    disableWebdriverStepsReporting: true,
+    disableWebdriverScreenshotsReporting: true,
+  }]],
 
   //
   // If you are using Cucumber you need to specify the location of your step definitions.
@@ -181,6 +193,16 @@ export const config: WebdriverIO.Config = {
    */
   // onPrepare: function (config, capabilities) {
   // },
+  onPrepare: function () {
+    console.log('onPrepare started...')
+    const allureResultPath = './allure-results'
+
+    emptyDir(allureResultPath, err => {
+      if (err) return console.error(err)
+      else console.log('Previous allure results cleared')
+    })
+
+  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
    * for that worker as well as modify runtime environments in an async fashion.
