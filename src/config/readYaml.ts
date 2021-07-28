@@ -3,8 +3,7 @@ import yaml from "js-yaml";
 import path from "path";
 
 let alreadyImported = {};
-
-export function read(
+export function readYAML(
   filePath: string,
   appRoot = process.env.appRoot || process.cwd.toString()
 ) {

@@ -1,13 +1,13 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { read } from "../../src/config/readYaml";
+import { readYAML } from "../../src/config/readYaml";
 import { env } from "./../../src/config/common_functions/configuration";
 
-const conf = read("../../conf.yaml", __dirname);
+const conf = readYAML("../../conf.yaml", __dirname);
 
 Given(/^I have yaml file so reading it$/, async () => {
   console.log("reading YAML File");
   console.log(__dirname);
-  const configurationData = read("../../conf.yaml", __dirname);
+  const configurationData = readYAML("../../conf.yaml", __dirname);
 
   console.log(`Conf Data ->\n${JSON.stringify(configurationData, undefined, 2)}`);
 });

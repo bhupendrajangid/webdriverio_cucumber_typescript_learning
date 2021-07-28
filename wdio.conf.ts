@@ -1,11 +1,18 @@
-import { conf } from "./conf";
-import { emptyDir } from "fs-extra"
+import { emptyDir } from "fs-extra";
+import { readYAML } from "./src/config/readYaml";
 
-let scriptsToRun: (string | string[])[] = conf.data.suites
-if (conf.data.specs) {
-  scriptsToRun = conf.data.specs
-  if (typeof scriptsToRun === 'string') scriptsToRun = [scriptsToRun]
-}
+const confData = readYAML("conf", __dirname)
+
+let
+  scriptsToRun: (string | string[])[] = confData.suites,
+  stepFiles: (string | string[]) = confData.stepsFilePath,
+  excludeSpecs: string[] = confData.exclude
+
+if (confData.specs) scriptsToRun = confData.specs
+if (typeof scriptsToRun === 'string') scriptsToRun = [scriptsToRun]
+if (typeof stepFiles === 'string') stepFiles = [stepFiles]
+if (excludeSpecs === null || excludeSpecs === undefined) excludeSpecs = ["Nothing to exclude"]
+if (typeof excludeSpecs === 'string') excludeSpecs = [excludeSpecs]
 
 export const config: WebdriverIO.Config = {
   //
@@ -34,7 +41,7 @@ export const config: WebdriverIO.Config = {
   //
   specs: scriptsToRun,
   // Patterns to exclude.
-  exclude: conf.data.exclude,
+  exclude: excludeSpecs,
   //
   // ============
   // Capabilities
@@ -51,7 +58,7 @@ export const config: WebdriverIO.Config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: conf.data.maxInstances,
+  maxInstances: confData.maxInstances,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -79,7 +86,7 @@ export const config: WebdriverIO.Config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: conf.data.logLevel,
+  logLevel: confData.logLevel,
   //
   // Set specific log levels per logger
   // loggers:
@@ -106,14 +113,14 @@ export const config: WebdriverIO.Config = {
   baseUrl: "http://localhost",
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: conf.data.waitforTimeout,
+  waitforTimeout: confData.waitforTimeout,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
-  connectionRetryTimeout: conf.data.connectionRetryTimeout,
+  connectionRetryTimeout: confData.connectionRetryTimeout,
   //
   // Default request retries count
-  connectionRetryCount: conf.data.connectionRetryCount,
+  connectionRetryCount: confData.connectionRetryCount,
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
@@ -151,31 +158,31 @@ export const config: WebdriverIO.Config = {
   // If you are using Cucumber you need to specify the location of your step definitions.
   cucumberOpts: {
     // <string[]> (file/dir) require files before executing features
-    require: conf.data.stepsFilePath,
+    require: stepFiles,
     // <boolean> show full backtrace for errors
     backtrace: false,
     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
     requireModule: [],
     // <boolean> invoke formatters without executing steps
-    dryRun: conf.data.dryRun,
+    dryRun: confData.dryRun,
     // <boolean> abort the run on first failure
-    failFast: conf.data.failFast,
+    failFast: confData.failFast,
     // <string[]> (type[:path]) specify the output format, optionally supply PATH to redirect formatter output (repeatable)
-    format: conf.data.format,
+    format: confData.format,
     // <boolean> hide step definition snippets for pending steps
-    snippets: conf.data.snippets,
+    snippets: confData.snippets,
     // <boolean> hide source uris
-    source: conf.data.source,
+    source: confData.source,
     // <string[]> (name) specify the profile to use
     profile: [],
     // <boolean> fail if there are any undefined or pending steps
-    strict: conf.data.strict,
+    strict: confData.strict,
     // <string> (expression) only execute the features or scenarios with tags matching the expression
-    tagExpression: conf.data.tagExpression,
+    tagExpression: confData.tagExpression,
     // <number> timeout for step definitions
-    timeout: conf.data.timeout,
+    timeout: confData.timeout,
     // <boolean> Enable this config to treat undefined definitions as warnings.
-    ignoreUndefinedDefinitions: conf.data.ignoreUndefinedDefinitions,
+    ignoreUndefinedDefinitions: confData.ignoreUndefinedDefinitions,
   },
 
   //

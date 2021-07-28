@@ -2,14 +2,13 @@
 environment: e1
 
 # Specify Test Files
-specs: ./test/features/login.feature
+specs: ./test/features/*.feature
 
 suites:
   - ./test/features/*.feature
 
 # Patterns to exclude.
-exclude:
-  - ./test/features/home.feature
+exclude: ./test/features/register.feature
 
 # Capabilities
 maxInstances: 10
@@ -25,8 +24,7 @@ connectionRetryTimeout: 120000
 connectionRetryCount: 3
 
 # Cucumber options
-stepsFilePath:
-  - ./test/steps/*.ts
+stepsFilePath: ./test/steps/*.ts
 dryRun: false
 failFast: false
 format: pretty

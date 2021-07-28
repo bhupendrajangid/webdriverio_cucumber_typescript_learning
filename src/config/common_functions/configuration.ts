@@ -1,4 +1,4 @@
-import { read } from "./../readYaml";
+import { readYAML } from "./../readYaml";
 const envFilePath = "./../default_data/environment.yaml";
 
-export const env = { data: read(envFilePath, __dirname) };
+export const env = { data: readYAML(envFilePath, __dirname) };
