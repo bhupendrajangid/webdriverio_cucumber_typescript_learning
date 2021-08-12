@@ -1,14 +1,14 @@
 # Select environment options -> e1 | e2
-environment: e1
+environment: dev
 
 # Specify Test Files
-specs: ./test/features/*.feature
+specs: test/features/testConfigurations.feature
 
 suites:
   - ./test/features/*.feature
 
 # Patterns to exclude.
-exclude: ./test/features/register.feature
+exclude:
 
 # Capabilities
 maxInstances: 10

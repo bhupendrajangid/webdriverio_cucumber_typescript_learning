@@ -1,5 +1,5 @@
 import { emptyDir } from "fs-extra";
-import { readYAML } from "./src/config/readYaml";
+import { readYAML } from "common/functions/readYaml";
 
 const confData = readYAML("conf", __dirname)
 
