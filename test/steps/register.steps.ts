@@ -1,10 +1,13 @@
 import { Given, When, Then } from '@cucumber/cucumber'
 import chaiPage from '../../src/pages/register.page'
+import { click, selectDropdown, selectVisibleText, setText } from './../../src/utils/commands';
+import { openApp } from "common/functions/application"
 
-Given(/^I am on practice page \"([^\"]*)\"$/, async (appurl: string) => {
-    await browser.maximizeWindow()
-    await browser.url(appurl)
-});
+const pageFctns = new class {
+    get register() { return require('pages/register') }
+}
+
+Given(/^I am on practice page \"([^\"]*)\"$/, async (appurl: string) => { await openApp(appurl) });
 
 Then(/^I validat page header \"([^\"]*)\"$/, async (header: string) => {
     await expect(chaiPage.getHeader()).toHaveText(header)
@@ -28,5 +31,6 @@ When(/^I select continent (.+) and commands (.+)$/, async (continent: string, co
 });
 
 When(/^I click on submit button$/, async () => {
-    await chaiPage.clickOnSubmitBtn()
+    await pageFctns.register.functions.submitForm()
+
 });

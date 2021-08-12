@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { readYAML } from "../../src/config/readYaml";
+import { readYAML } from "common/functions/readYaml";
 import { env } from "./../../src/config/common_functions/configuration";
 
 const conf = readYAML("../../conf.yaml", __dirname);

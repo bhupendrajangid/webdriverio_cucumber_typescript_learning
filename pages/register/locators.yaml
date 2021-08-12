@@ -1,0 +1,13 @@
+individuals:
+  header: //h1
+  fname: "[name=firstname]"
+  lname: "[name=lastname]"
+  gender_radio: "[name=sex]"
+  continent_dropdown: "#continents"
+  selCommands_multiselect: "#selenium_commands"
+groups:
+  experience_radio: "[name=exp]"
+  favchai_checkbox: "[input[name*=Tea]]"
+  whychai_checkbox: "[name=tool]"
+submit_btn: "#submit"
+header: "#wsb-element-00000000-0000-0000-0000-000452032346 > div > h1"

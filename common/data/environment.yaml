@@ -1,6 +1,6 @@
 dev:
-  url: https://www.google.com/
+  appUrl: https://www.google.com
   environment: Testing in E1 environment
 qa:
-  url: https://www.amazon.co.in/
+  appUrl: https://www.amazon.co.in
   environment: Testing in E2 environment
